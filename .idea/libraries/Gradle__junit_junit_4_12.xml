@@ -1,0 +1,95 @@
+<component name="libraryTable">
+  <library name="Gradle: junit:junit:4.12">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/doc/html/api" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/doc/html/api" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/src/examples" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/src/main" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/src/spec/test" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/src/tck/src" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/src/test" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/src/test-fixtures/extmodule/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/src/test-resources" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-ant/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-ant/src/test-resources" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-ant/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-bsf/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-bsf/src/spec/test" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-bsf/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-console/src/main/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-groovydoc/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-groovydoc/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-groovydoc/src/test/resources" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-jmx/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-jmx/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-jmx/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-json/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-jsr223/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-jsr223/src/spec/test" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-jsr223/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-nio/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-servlet/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-servlet/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-sql/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-swing/src/main/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-swing/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-swing/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-templates/src/main/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-templates/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-templates/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-test/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-test/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-testng/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-tests-vm8/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-xml/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/groovy-xml/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/groovy-2.4.12/src/subprojects/stress/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/src/examples" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/src/main" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/src/spec/test" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/src/tck/src" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/src/test" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/src/test-fixtures/extmodule/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/src/test-resources" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-ant/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-ant/src/test-resources" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-ant/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-bsf/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-bsf/src/spec/test" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-bsf/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-console/src/main/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-groovydoc/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-groovydoc/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-groovydoc/src/test/resources" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-jmx/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-jmx/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-jmx/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-json/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-jsr223/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-jsr223/src/spec/test" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-jsr223/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-nio/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-servlet/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-servlet/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-sql/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-swing/src/main/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-swing/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-swing/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-templates/src/main/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-templates/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-templates/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-test/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-test/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-testng/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-xml/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/groovy-xml/src/test/groovy" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/stress/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../tools/apache-groovy-sdk-2.4.13/groovy-2.4.13/src/subprojects/tests-vm8/src/test/java" />
+    </SOURCES>
+  </library>
+</component>

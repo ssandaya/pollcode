@@ -1,0 +1,820 @@
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd101 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Category",      2)
+      DecShortParam( "Type",          2)
+      DecFloatParam( "Device Number", 2)
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd101, "101" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd102 )
+   HexRepeatBlock_StartCount( "Number of Modules", 2, 1)
+      HexShortParam( "Slot Number",    2)
+      HexShortParam( "Type of Module", 2)
+      HexFloatParam( "Power On Reset")
+      HexFloatParam( "Current I/O Reading")
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd102, "102" )
+
+//-----------------------------------------------------------------------------
+// Active Alarm Report
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd113 )
+   StringParam( "Station Header 1", 20 )
+   StringParam( "Station Header 2", 20 )
+   StringParam( "Station Header 3", 20 )
+   StringParam( "Station Header 4", 20 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Alarm Category",     2)
+      DecShortParam( "Sensor Category",    2)
+      DecShortParam( "Alarm Type",         2)
+      DecShortParam( "Tank/Sensor Number", 2)
+      StringParam( "YYMMDDhhmm", sizeof("YYMMDDhhmm")-1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd113, "113" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd201 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Tank", 2)
+      StringParam( "Product",  1)
+      HexShortParam( "Status", 4)
+      HexRepeatBlock_StartCount( "Number of Fields", 2, 2)
+         HexFloatParam( "Volume,TCVolume,Ullage,FuelHeight,WaterHeight,Temperature,WaterVolume")
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd201, "201" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd501 )
+   StringParam( "YYMMDDhhmm", 10 )
+SerialCmd_End( Cmd501, "501" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd503 )
+   StringParam( "Header Line", 20 )
+SerialCmd_End( Cmd503, "503" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd521 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Receiver Number",             2 )
+      DecShortParam( "Receiver Configuration Flag", 1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd521, "521" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd522 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Receiver Number", 2 )
+       StringParam( "Location Label",   20 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd522, "522" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd523 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Receiver Number", 2 )
+       StringParam( "Phone Number",     20 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd523, "523" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd524 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Receiver Number",          2 )
+       // Is this next one hex or dec?  Docs don't say.
+       // It only goes from 01 to 03 now, anyway.
+       HexShortParam( "Dialing Destination Type", 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd524, "524" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd525 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Receiver Number", 2 )
+       // Is this next one hex or dec?  Docs don't say.
+       HexShortParam( "Port Number",     1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd525, "525" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd52C )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Receiver Number", 2)
+//      HexRepeatBlock_StartCount( "Number of Alarms", 2, 2)  // this field is incorrect!!!
+      HexShortParam( "Number of Alarms", 2)
+      RepeatBlock_Start( 2 )
+         DecShortParam( "Alarm Category", 2)
+         DecShortParam( "Alarm Type",     2)
+         DecShortParam( "Device Number",  2)
+         DecShortParam( "Status",         2)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd52C, "52C" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd53D )
+   HexRepeatBlock_StartCount( "Number of Records", 2, 1 )
+      HexLongParam( "Timestamp", 8 )
+      HexShortParam( "Value Count", 2 )
+      HexFloatParam( "Event Code" )
+      HexFloatParam( "Metric Pressure" )
+      HexFloatParam( "?" )
+      DecShortParam( "?", 1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd53D, "53D" )
+         
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd601 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Tank Number", 2 )
+       DecShortParam( "Config Flag", 1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd601, "601" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd602 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Tank Number", 2 )
+       StringParam( "Product Label", 20 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd602, "602" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd603 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Tank Number",  2 )
+       DecShortParam( "Product Code", 1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd603, "603" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd604 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Tank Number",  2 )
+       HexFloatParam( "Full Volume" )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd604, "604" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd607 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Tank Number",  2 )
+       HexFloatParam( "Diameter" )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd607, "607" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd609 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Tank Number", 2 )
+       HexFloatParam( "Thermal Coeff" )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd609, "609" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd721 )
+   // The documentation is a pack of LIES!
+   // Actually trying it reveals this:
+   RepeatBlock_Start( 1 )
+      DecShortParam( "SmartSensor Number", 2 )
+      DecShortParam( "Config Flag",        1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd721, "721" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd722 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "SmartSensor Number", 2 )
+      StringParam( "SmartSensor Label",   20 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd722, "722" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd723 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Smart Sensor Number",   2 )
+       DecShortParam( "Smart Sensor Category", 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd723, "723" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd781 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "PLLD Sensor Number", 2 )
+      DecShortParam( "Config Flag",        1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd781, "781" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd782 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "PLLD Sensor Number", 2 )
+      StringParam( "PLLD Sensor Label",   20 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd782, "782" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd785 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "PLLD Sensor Number", 2 )
+      DecShortParam( "Tank Number",        2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd785, "785" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd787 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "PLLD Sensor Number", 2)
+//      HexRepeatBlock_StartCount( "Number of Alarms", 2, 2)  // this field is incorrect!!!
+      HexShortParam( "Number of Alarms", 2)
+      RepeatBlock_Start( 2 )
+         DecShortParam( "Alarm Category",      2)
+         DecShortParam( "Alarm Type",          2)
+         DecShortParam( "Tank/Sensor Number",  2)
+         DecShortParam( "Status",              2)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd787, "787" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd7A1 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "WPLLD Sensor Number", 2 )
+      DecShortParam( "Config Flag",         1 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd7A1, "7A1" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd7A2 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "WPLLD Sensor Number", 2 )
+      StringParam( "WPLLD Sensor Label",   20 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd7A2, "7A2" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd7A5 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "WPLLD Sensor Number", 2 )
+      DecShortParam( "Tank Number",         2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd7A5, "7A5" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd7A7 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "WPLLD Sensor Number", 2)
+//      HexRepeatBlock_StartCount( "Number of Alarms", 2, 2)  // this field is incorrect!!!
+      HexShortParam( "Number of Alarms", 2)
+      RepeatBlock_Start( 2 )
+         DecShortParam( "Alarm Category",      2)
+         DecShortParam( "Alarm Type",          2)
+         DecShortParam( "Tank/Sensor Number",  2)
+         DecShortParam( "Status",              2)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd7A7, "7A7" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd801 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Input Number",  2)
+      DecShortParam( "Configuration", 1)
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd801, "801" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd802 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Input Number",    2)
+      StringParam( "Location Label", 20)
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd802, "802" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd803 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Input Number", 2)
+      DecShortParam( "Input Type",   1)
+      DecShortParam( "Orientation",  1)
+      HexRepeatBlock_StartCount( "Number of Tanks", 2, 2)
+      //RepeatBlock_Start( 2 )
+         DecShortParam( "Tank Number", 2)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd803, "803" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd806 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Relay Number",  2)
+      DecShortParam( "Configuration", 1)
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd806, "806" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd807 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Relay Number",  2)
+      StringParam( "Location Label", 20)
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd807, "807" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd8BC )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Relay Number", 2)
+//      HexRepeatBlock_StartCount( "Number of Alarms", 2, 2)  // this field is incorrect!!!
+      HexShortParam( "Number of Alarms", 2)
+      RepeatBlock_Start( 2 )
+         DecShortParam( "Alarm Category", 2)
+         DecShortParam( "Alarm Type",     2)
+         DecShortParam( "Device Number",  2)
+         DecShortParam( "Status",         2)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd8BC, "8BC" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd809 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Relay Number", 2)
+      DecShortParam( "Orientation",  1)
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd809, "809" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd80A )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Relay Number", 2)
+      DecShortParam( "Relay Type",  1)
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd80A, "80A" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd80B )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Relay Number",          2)
+      DecShortParam( "Relay Tank Assignment", 2)
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd80B, "80B" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd80C )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Device Number", 2)
+      DecShortParam( "Input Type",    1)
+      DecShortParam( "Orientation",   1)
+      HexRepeatBlock_StartCount( "Number of Tanks", 2, 2)
+         DecShortParam( "Tank Number", 2)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( Cmd80C, "80C" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd852 )
+   DecShortParam( "Save all to EEPROM", 2)
+SerialCmd_End( Cmd852, "852" )
+
+
+//-----------------------------------------------------------------------------
+//  NOTE: This command is broken inside the TLS!!! It reports 10 SEM keys but
+//        actually returns 12! The description below deals with this flaw, but
+//        will have to be modified when the command is repaired.
+//-----------------------------------------------------------------------------
+SerialCmd_Start( Cmd905 )
+    StringParam( "Software Version", 24)
+    StringParam( "Created Date",     24)
+//    HexRepeatBlock_StartCount( "Number of Features", 2, 2)
+//        DecShortParam( "PeriodicTankTest|AnnualTankTest|CLSD|BIR|FuelManager|PrecisionPLLD|TankerLoad|PLLD02GPH|PPLLDOnDemand|Special3Tank|ISD|PMC",  2)
+//    RepeatBlock_End( 1 )
+    HexShortParam( "Number of Features", 2)
+
+    DecShortParam( "PeriodicTankTest", 2)
+    DecShortParam( "AnnualTankTest",   2)
+    DecShortParam( "CLSD",             2)
+    DecShortParam( "BIR",              2)
+    DecShortParam( "FuelManager",      2)
+    DecShortParam( "PrecisionPLLD",    2)
+    DecShortParam( "TankerLoad",       2)
+    DecShortParam( "PLLD02GPH",        2)
+    DecShortParam( "PPLLDOnDemand",    2)
+    DecShortParam( "Special3Tank",     2)
+    DecShortParam( "ISD",              2)
+    DecShortParam( "PMC",              2)
+    StringParam( "SEM Configuration", 22)
+SerialCmd_End( Cmd905, "905" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdB35 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Sensor Number", 2)
+      HexRepeatBlock_StartCount( "Number of 8-byte fields", 2, 2)
+         HexLongParam( "Model number | Serial number | Date Code | Protocol Version",  8)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdB35, "B35" )
+
+
+//-----------------------------------------------------------------------------
+// iC0300 120822 0458
+//<SOH>iC04PPYYMMDDHHmmPPnnTT...YYMMDDHHmmYYMMDDHHmmNNFFFFFFFF...
+//PPnnTT...YYMMDDHHmmYYMMDDHHmmNNFFFFFFFF&&CCCC<ETX>
+//Notes:
+//1. YYMMDDHHmm - Current Date and Time
+//2. PP - Product Number (Decimal, 00=All Products)
+//3. nn - Number of tanks that are mapped to the product (Decimal)
+//4. TT - Tank numbers mapped to product
+//5. YYMMDDHHmm - Opening Date and Time
+//6. YYMMDDHHmm - Closing Date and Time
+//7. NN - Number of eight character Data Fields to follow (Hex)
+//8. FFFFFFFF - ASCII Hex IEEE floats:
+//1. Probe measured inventory at previous period close
+//2. Sum total of adjusted deliveries during period
+//3. Sum total of all metered sales during period
+//4. Manually entered adjustments for period
+//5. Calculated Inventory Volume at period close
+//6. Probe measured inventory at period close
+//7. Water Height at period close
+//8. Variance over period
+//10. && - Data Termination Flag
+//11. CCCC - Message Checksum
+SerialCmd_Start( CmdC03 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Product Number", 2)
+      DecRepeatBlock_StartCount( "Number of Tanks in Product", 2, 2)
+         DecShortParam( "Tank", 2)
+      RepeatBlock_End( 2 )
+      StringParam( "Opening Date/Time", 10)
+      StringParam( "Closing Date/Time", 10)
+      DecShortParam( "# fields", 2)	// Should be 8
+      HexFloatParam( "Open Measured volume" )
+      HexFloatParam( "Adjusted deliveries" )
+      HexFloatParam( "Sales" )
+      HexFloatParam( "Manual Adjust" )
+      HexFloatParam( "Close Calculated volume" )
+      HexFloatParam( "Close Measured volume" )
+      HexFloatParam( "Close Water Height" )
+      HexFloatParam( "Variance" )
+//      DecRepeatBlock_StartCount( "Number of fields", 2, 2)
+//         HexFloatParam( "field")
+//      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdC03, "C03" )
+
+//-----------------------------------------------------------------------------
+//<SOH>iC04PPYYMMDDHHmmGGPPnnTT...YYMMDDHHmmYYMMDDHHmmNNFFFFFFFF...
+//PPnnTT...YYMMDDHHmmYYMMDDHHmmNNFFFFFFFF&&CCCC<ETX>
+//Notes:
+//1. YYMMDDHHmm - Current Date and Time
+//2. GG - Number of product Groupings to follow (Hex)
+//3. PP - Product Number (Decimal, 00=All Products)
+//4. nn - Number of tanks that are mapped to the product (Decimal)
+//5. TT - Tank numbers mapped to product
+//6. YYMMDDHHmm - Opening Date and Time
+//7. YYMMDDHHmm - Closing Date and Time
+//8. NN - Number of eight character Data Fields to follow (Hex)
+//9. FFFFFFFF - ASCII Hex IEEE floats:
+//1. Probe measured inventory at previous period close
+//2. Sum total of adjusted deliveries during period
+//3. Sum total of all metered sales during period
+//4. Manually entered adjustments for period
+//5. Calculated Inventory Volume at period close
+//6. Probe measured inventory at period close
+//7. Water Height at period close
+//8. Variance over period
+//10. && - Data Termination Flag
+//11. CCCC - Message Checksum
+SerialCmd_Start( CmdC04 )
+   HexRepeatBlock_StartCount( "Number of Products", 2, 1)
+      DecShortParam( "Product Number", 2)
+      DecRepeatBlock_StartCount( "Number of Tanks in Product", 2, 2)
+         DecShortParam( "Tank", 2)
+      RepeatBlock_End( 2 )
+      StringParam( "Opening Date/Time", 10)
+      StringParam( "Closing Date/Time", 10)
+
+      DecShortParam( "# fields", 2)	// Should be 8
+      HexFloatParam( "Open Measured volume" )
+      HexFloatParam( "Adjusted deliveries" )
+      HexFloatParam( "Sales" )
+      HexFloatParam( "Manual Adjust" )
+      HexFloatParam( "Close Calculated volume" )
+      HexFloatParam( "Close Measured volume" )
+      HexFloatParam( "Close Water Height" )
+      HexFloatParam( "Variance" )
+//      DecRepeatBlock_StartCount( "Number of fields", 2, 2)
+//         HexFloatParam( "field")
+//      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdC04, "C04" )
+
+//-----------------------------------------------------------------------------
+// iC0500 120822 0458
+//<SOH>iC05PPYYMMDDHHmmPPnnTT...YYMMDDHHmmYYMMDDHHmmNNFFFFFFFF...
+//PPnnTT...YYMMDDHHmmYYMMDDHHmmNNFFFFFFFF&&CCCC<ETX>
+//Notes:
+//1. YYMMDDHHmm - Current Date and Time
+//2. PP - Product Number (Decimal, 00=All Products)
+//3. nn - Number of tanks that are mapped to the product (Decimal)
+//4. TT - Tank numbers mapped to product
+//5. YYMMDDHHmm - Opening Date and Time
+//6. YYMMDDHHmm - Closing Date and Time
+//7. NN - Number of eight character Data Fields to follow (Hex)
+//8. FFFFFFFF - ASCII Hex IEEE floats:
+//1. Probe measured inventory at previous period close
+//2. Sum total of adjusted deliveries during period
+//3. Sum total of all metered sales during period
+//4. Manually entered adjustments for period
+//5. Calculated Inventory Volume at period close
+//6. Probe measured inventory at period close
+//7. Water Height at period close
+//8. Variance over period
+//10. && - Data Termination Flag
+//11. CCCC - Message Checksum
+SerialCmd_Start( CmdC05 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Product Number", 2)
+      DecRepeatBlock_StartCount( "Number of Tanks in Product", 2, 2)
+         DecShortParam( "Tank", 2)
+      RepeatBlock_End( 2 )
+      StringParam( "Opening Date/Time", 10)
+      StringParam( "Closing Date/Time", 10)
+
+      DecShortParam( "# fields", 2)	// Should be 8
+      HexFloatParam( "Open Measured volume" )
+      HexFloatParam( "Adjusted deliveries" )
+      HexFloatParam( "Sales" )
+      HexFloatParam( "Manual Adjust" )
+      HexFloatParam( "Close Calculated volume" )
+      HexFloatParam( "Close Measured volume" )
+      HexFloatParam( "Close Water Height" )
+      HexFloatParam( "Variance" )
+//      DecRepeatBlock_StartCount( "Number of fields", 2, 2)
+//         HexFloatParam( "field")
+//      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdC05, "C05" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV10 )
+   StringParam( "ISD Version Number", 5 )
+SerialCmd_End( CmdV10, "V10" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV40 )
+   DecShortParam( "Vapor Processor Type",   2 )
+SerialCmd_End( CmdV40, "V40" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV41 )
+   DecShortParam( "Processor Control Level", 2)
+SerialCmd_End( CmdV41, "V41" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV42 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Smart Sensor",  2 )
+       DecShortParam( "Airflow Meter", 2 )
+
+         DecShortParam( "Fuel Position Number", 2 )  // 1st fuel position
+         DecShortParam( "Fuel Position Label",  2 )
+            DecShortParam( "Meter Number", 2 )       // 1st meter/hose
+            StringParam(   "Hose Number",  2 )
+            DecShortParam( "Label Id",     2 )
+            DecShortParam( "Meter Number", 2 )       // 2nd meter/hose
+            StringParam(   "Hose Number",  2 )
+            DecShortParam( "Label Id",     2 )
+            DecShortParam( "Meter Number", 2 )       // 3rd meter/hose
+            StringParam(   "Hose Number",  2 )
+            DecShortParam( "Label Id",     2 )
+            DecShortParam( "Meter Number", 2 )       // 4th meter/hose
+            StringParam(   "Hose Number",  2 )
+            DecShortParam( "Label Id",     2 )
+
+         DecShortParam( "Fuel Position Number", 2 )  // 2nd fuel position
+         DecShortParam( "Fuel Position Label",  2 )
+            DecShortParam( "Meter Number", 2 )       // 1st meter/hose
+            StringParam(   "Hose Number",  2 )
+            DecShortParam( "Label Id",     2 )
+            DecShortParam( "Meter Number", 2 )       // 2nd meter/hose
+            StringParam(   "Hose Number",  2 )
+            DecShortParam( "Label Id",     2 )
+            DecShortParam( "Meter Number", 2 )       // 3rd meter/hose
+            StringParam(   "Hose Number",  2 )
+            DecShortParam( "Label Id",     2 )
+            DecShortParam( "Meter Number", 2 )       // 4th meter/hose
+            StringParam(   "Hose Number",  2 )
+            DecShortParam( "Label Id",     2 )
+
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdV42, "V42" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV43 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Sensor Index", 2)
+      DecShortParam( "In Use Flag",  2)
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdV43, "V43" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV47 )
+   DecShortParam( "Start Test Hour",    2)
+   DecShortParam( "Start Test Minute",  2)
+   DecShortParam( "Time Delay Minutes", 3)
+SerialCmd_End( CmdV47, "V47" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV48 )
+   RepeatBlock_Start( 1 )
+       DecShortParam( "Airflow Meter",      2 )
+       DecShortParam( "Smart Sensor Index", 2 )
+
+         DecShortParam( "Fuel Position Label", 2 )  // 1st fuel position
+           DecShortParam( "Hose Number", 2 )
+           DecShortParam( "Hose Number", 2 )
+           DecShortParam( "Hose Number", 2 )
+           DecShortParam( "Hose Number", 2 )
+
+         DecShortParam( "Fuel Position Label", 2 )  // 2nd fuel position
+           DecShortParam( "Hose Number", 2 )
+           DecShortParam( "Hose Number", 2 )
+           DecShortParam( "Hose Number", 2 )
+           DecShortParam( "Hose Number", 2 )
+    RepeatBlock_End( 1 )
+SerialCmd_End( CmdV48, "V48" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV49 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Hose Label Index", 2)
+      StringParam( "Hose Label",        10)
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdV49, "V49" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV4A )
+   RepeatBlock_Start( 1 )
+      HexShortParam( "Hose Number",         2)
+      HexShortParam( "Logical FP Number",   2)
+      HexShortParam( "Labeled FP Number",   2)
+      HexShortParam( "VFM Number",          2)
+      HexShortParam( "Product Table Index", 2)
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdV4A, "V4A" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV4B )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Logical FP Number", 2)
+      DecShortParam( "VFM Number",        2)
+      StringParam( "1st Meter Index", 2)
+      StringParam( "1st Hose Index",  2)
+      StringParam( "2nd Meter Index", 2)
+      StringParam( "2nd Hose Index",  2)
+      StringParam( "3rd Meter Index", 2)
+      StringParam( "3rd Hose Index",  2)
+      StringParam( "4th Meter Index", 2)
+      StringParam( "4th Hose Index",  2)
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdV4B, "V4B" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV4C )
+   HexShortParam( "Address",       2)
+   HexShortParam( "Interval Time", 3)
+SerialCmd_End( CmdV4C, "V4C" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV4D )
+   HexShortParam( "Address",        2)
+   DecShortParam( "Polling Status", 1)
+SerialCmd_End( CmdV4D, "V4D" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV4E )
+   DecShortParam( "EVR Type",      2)
+   DecShortParam( "Vacuum Assist", 2)
+SerialCmd_End( CmdV4E, "V4E" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV4F )
+   HexFloatParam( "Low Nozzle AL")
+   HexFloatParam( "High Nozzle AL")
+SerialCmd_End( CmdV4F, "V4F" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV50 )
+   DecShortParam( "CVLD Window Start Hour",    2)
+   DecShortParam( "CVLD Window Start Minutes", 2)
+   DecShortParam( "CVLD Window Duration",      3)
+SerialCmd_End( CmdV50, "V50" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV51 )
+   DecShortParam( "ISDPMC Setup Test", 1)
+SerialCmd_End( CmdV51, "V51" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV52 )
+   DecShortParam( "High ORVR", 1)
+SerialCmd_End( CmdV52, "V52" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdV85 )
+   StringParam( "Containment Tests",             6 )
+   StringParam( "CVLD Date and Time",            6 )
+   StringParam( "Vapor Processor Date and Time", 6 )
+   StringParam( "Sensor Out Date and Time",      6 )
+   StringParam( "Setup Date and Time",           6 )
+   RepeatBlock_Start( 1 )
+        DecShortParam( "Fuel Position", 2 )
+        DecShortParam( "Hose Number",   2 )
+        StringParam( "Collection Date and Time", 6 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdV85, "V85" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdVC0 )
+   DecShortParam( "Automatic Control Status", 1)
+SerialCmd_End( CmdVC0, "VC0" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdVC1 )
+   DecShortParam( "Vapor Processor Status", 1)
+SerialCmd_End( CmdVC1, "VC1" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdVC5 )
+   DecShortParam( "Override Status", 1)
+SerialCmd_End( CmdVC5, "VC5" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdB33 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "MAG Sensor", 2)
+      HexRepeatBlock_StartCount( "Number of Floats", 2, 2)
+         HexFloatParam( "Total Height,Fuel Height,Water Height,Install Position,Board Temperature,Fuel Temperature")
+      RepeatBlock_End(2)
+   RepeatBlock_End(1)
+SerialCmd_End( CmdB33, "B33" )
+
+

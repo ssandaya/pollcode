@@ -1,0 +1,3 @@
+java -jar /usr/share/jenkins/jenkins.war
+
+H H(8-10) * * *

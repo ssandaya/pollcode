@@ -1,0 +1,406 @@
+//-----------------------------------------------------------------------------
+//   The command descriptions below will be "registered" at startup to create
+//   a map of commands and response descriptions.
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmper13 )
+  DecRepeatBlock_StartCount( "Number of Records", 4, 1)
+     DecShortParam( "Queue Index", 4)
+     HexLongParam(  "Seconds since Epoc", 8)
+     HexFloatParam( "Transaction Volume")
+     HexShortParam( "Fuel Position", 2)
+     HexShortParam( "Meter",  2)
+     DecShortParam( "Status", 1)
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAmper13, "&13" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmper14 )
+  DecRepeatBlock_StartCount( "Number of Records", 4, 1)
+     DecShortParam( "Queue Index", 4)
+     HexLongParam(  "Seconds since Epoc", 8)
+     HexFloatParam( "Vapor Pressure")
+     HexFloatParam( "Ullage Space")
+     HexShortParam( "Qualification Flag", 4)
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAmper14, "&14" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmper15 )
+  DecRepeatBlock_StartCount( "Number of Records", 4, 1)
+     DecShortParam( "Queue Index",        4)
+     HexLongParam(  "Seconds since Epoc", 8)
+     HexFloatParam( "Vapor Pressure")
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAmper15, "&15" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmper16 )
+  DecRepeatBlock_StartCount( "Number of Records", 4, 1)
+     DecShortParam( "Queue Index", 4)
+     HexLongParam(  "Seconds since Epoc", 8)
+     HexShortParam( "Duration", 3)
+     HexFloatParam( "Starting Vapor Pressure")
+     HexFloatParam( "Ending Vapor Pressure")
+     DecShortParam( "Runtine Fault Flag", 1)
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAmper16, "&16" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmper18 )
+  DecShortParam( "Flow Meter Number",               2)
+  DecRepeatBlock_StartCount( "Number of Records",   4, 1)  // nnnn
+     DecShortParam( "Queue Index",                  4)     // iiii
+     HexLongParam(  "Start of Busy Period",         8)     // ssssssss
+     HexShortParam( "Duration of Busy Period",      4)     // dddd
+     HexFloatParam( "Air Volume"                     )     // vvvvvvvv
+     HexShortParam( "Status Flags",                 4)     // ffff
+     HexRepeatBlock_StartCount( "Number of Events", 2, 2)  // nn
+        HexShortParam( "Fuel Position Number",      2)     // pp
+        HexShortParam( "Hose Number",               2)     // hh
+        HexShortParam( "Number of Transactions",    2)     // tt
+        HexFloatParam( "Fuel Volume")                      // ffffffff
+     RepeatBlock_End( 2 )
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAmper18, "&18" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmper33 )
+  HexRepeatBlock_StartCount( "Number of Tests",             4, 1)     // nnnn
+     HexLongParam(  "Seconds since 1/1/70",                 8   )     // ssssssss
+     HexRepeatBlock_StartCount( "Number of Hoses",          2, 2)     // nn
+        HexShortParam( "Fuel Position Label Number",        2   )     // pp
+        HexShortParam( "Hose Number",                       2   )     // hh
+        HexShortParam( "VFM Number",                        2   )     // vv
+
+        HexRepeatBlock_StartCount( "EVR Type Count",        1, 3)     // c
+           HexShortParam( "Gross/Degrade Test Result",      1   )     // s
+           HexFloatParam( "Gross/Degrade A/L Ratio"             )     // rrrrrrrr
+           HexFloatParam( "Gross/Degrade Days of Data"          )     // dddddddd
+           HexShortParam( "Gross/Degrade Number of Events", 4   )     // eeee
+        RepeatBlock_End( 3 )
+
+        HexRepeatBlock_StartCount( "ORVR Count",            1, 4)     // c
+           HexShortParam( "Statistical Test Result",        1   )     // s
+           HexShortParam( "Override",                       4   )     // aaaa
+           HexShortParam( "Number of Zeros",                4   )     // bbbb
+           HexShortParam( "Number of A/L events",           4   )     // mmmm
+           HexFloatParam( "% A/L events blocked"                )     // gggggggg
+           HexFloatParam( "threshold limit"                     )     // hhhhhhhh
+        RepeatBlock_End( 4 )
+
+     RepeatBlock_End( 2 )
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAmper33, "&33" )
+
+//-----------------------------------------------------------------------------
+//   Note: This format is only valid for "i@31ss8" commands!!!!
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt31 )
+   RepeatBlock_Start( 1 )
+      HexShortParam( "Sensor Number", 2 )
+      HexDoubleParam( "Slope" )
+      HexDoubleParam( "Offset" )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt31, "@31" )
+
+
+//-----------------------------------------------------------------------------
+//   Note: This format is only valid for "i@32ss10" commands!!!!
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt32 )
+   DecShortParam( "Sensor Number", 2 )
+   HexShortParam( "Sensor Type",   4 )
+   HexRepeatBlock_StartCount( "Number of Longs", 2, 1)
+      HexLongParam( "Raw Counts", 8 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt32, "@32" )
+
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt33 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Sensor Number", 2 )
+      DecShortParam( "Seconds",       3 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt33, "@33" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt99 )
+   HexShortParam( "Dip Switches",   2 )
+   HexShortParam( "NumberOfResets", 2 )
+   HexShortParam( "Days",           2 )
+   HexShortParam( "Hours",          2 )
+   HexShortParam( "Minutes",        2 )
+SerialCmd_End( CmdAt99, "@99" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt55, NewlineDepth=2 )
+  RepeatBlock_Start( 1 )
+   HexRepeatBlock_StartCount( "Number of Records", 4, 2)
+     DecShortParam( "Tank", 2)
+     StringParam(   "ProductCode", 1)
+     HexCharParam(  "ProbeType",   2)
+     HexCharParam(  "StatusFlags", 1)
+     DecShortParam( "SampleCount", 4)
+     HexFloatParam( "FuelHeight")
+     HexFloatParam( "WaterHeight")
+     HexRepeatBlock_StartCount( "Number of Temps", 2, 2)     // xx
+        HexFloatParam( "Temperature" )                       // ffffffff
+     RepeatBlock_End( 3 )
+     HexIntParam( "Timestamp", 8)
+   RepeatBlock_End( 2 )
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt55, "@55" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt56 )
+  RepeatBlock_Start( 1 )
+   HexRepeatBlock_StartCount( "Number of Records", 4, 2)
+     DecShortParam( "Tank", 2)
+     StringParam(   "ProductCode", 1)
+     HexCharParam(  "ProbeType",   2)
+     HexCharParam(  "StatusFlags", 1)
+     DecShortParam( "SampleCount", 4)
+     HexFloatParam( "FuelHeight")
+     HexFloatParam( "WaterHeight")
+     HexRepeatBlock_StartCount( "Number of Temps", 2, 2)     // xx
+        HexFloatParam( "Temperature" )                       // ffffffff
+     RepeatBlock_End( 3 )
+     HexIntParam( "Timestamp", 8)
+   RepeatBlock_End( 2 )
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt56, "@56" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt57 )
+  RepeatBlock_Start( 1 )
+   HexRepeatBlock_StartCount( "Number of Records", 4, 2)
+     DecShortParam( "Tank", 2)
+     StringParam(   "ProductCode", 1)
+     HexCharParam(  "ProbeType",   2)
+     HexCharParam(  "StatusFlags", 1)
+     DecShortParam( "SampleCount", 4)
+     HexFloatParam( "FuelHeight")
+     HexFloatParam( "WaterHeight")
+     HexRepeatBlock_StartCount( "Number of Temps", 2, 2)     // xx
+        HexFloatParam( "Temperature" )                       // ffffffff
+     RepeatBlock_End( 3 )
+     HexIntParam( "Timestamp", 8)
+   RepeatBlock_End( 2 )
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt57, "@57" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAtAM )
+  HexRepeatBlock_StartCount( "Number of Records", 4, 1)
+     HexShortParam( "FuelPos", 4)
+     HexCharParam( "EventType", 2)
+     HexCharParam( "NumMeters", 2)
+     HexCharParam( "ErrorFlag", 2)
+     HexIntParam( "Timestamp", 8)
+     HexLongParam( "SecondsDelay", 8)
+     HexCharParam( "MeterId", 2)
+     HexFloatParam( "Transaction Volume")
+     HexDoubleParam( "Totalizer Volume")
+     HexCharParam( "MeterId", 2)
+     HexFloatParam( "Transaction Volume")
+     HexDoubleParam( "Totalizer Volume")
+  RepeatBlock_End( 1 )
+SerialCmd_End( CmdAtAM, "@AM" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt65, Encoded, NewlineDepth=2 )
+   RepeatBlock_Start( 1 )
+      HexRepeatBlock_StartCount( "Number of Records", 4, 2)
+         DecShortParam( "Tank", 2)
+         StringParam(   "ProductCode", 1)
+         HexCharParam(  "ProbeType",   2)
+         Offset0x30(  "StatusFlags")
+         DecShortParam( "SampleCount", 4)
+         HexFloatParam( "FuelHeight")
+         HexFloatParam( "WaterHeight")
+         HexFloatParam( "Density")
+         HexRepeatBlock_StartCount( "Number of Temps", 2, 3)     // xx
+            HexFloatParam( "Temperature" )                       // ffffffff
+         RepeatBlock_End( 3 )
+         HexIntParam( "Timestamp", 8)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+
+SerialCmd_End( CmdAt65, "@65" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt66, Encoded, NewlineDepth=2 )
+   RepeatBlock_Start( 1 )
+      HexRepeatBlock_StartCount( "Number of Records", 4, 2)
+         DecShortParam( "Tank", 2)
+         StringParam(   "ProductCode", 1)
+         HexCharParam(  "ProbeType",   2)
+         Offset0x30(  "StatusFlags")
+         DecShortParam( "SampleCount", 4)
+         HexFloatParam( "FuelHeight")
+         HexFloatParam( "WaterHeight")
+         HexFloatParam( "Density")
+         HexRepeatBlock_StartCount( "Number of Temps", 2, 3)     // xx
+            HexFloatParam( "Temperature" )                       // ffffffff
+         RepeatBlock_End( 3 )
+         HexIntParam( "Timestamp", 8)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt66, "@66" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt67, Encoded, NewlineDepth=2 )
+   RepeatBlock_Start( 1 )
+      HexRepeatBlock_StartCount( "Number of Records", 4, 2)
+         DecShortParam( "Tank", 2)
+         StringParam(   "ProductCode", 1)
+         HexCharParam(  "ProbeType",   2)
+         Offset0x30(  "StatusFlags")
+         DecShortParam( "SampleCount", 4)
+         HexFloatParam( "FuelHeight")
+         HexFloatParam( "WaterHeight")
+         HexFloatParam( "Density")
+         HexRepeatBlock_StartCount( "Number of Temps", 2, 3)     // xx
+            HexFloatParam( "Temperature" )                       // ffffffff
+         RepeatBlock_End( 3 )
+         HexIntParam( "Timestamp", 8)
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt67, "@67" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt68, Encoded, NewlineDepth=3 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "SensorId", 2)                           // VV
+      DecRepeatBlock_StartCount( "Number of Records", 4, 2)   // NNNN
+         DecShortParam( "number of 8-byte fields", 2)             // xx
+         HexULongParam( "Timestamp", 8)                         // tttttttt
+         HexFloatParam( "pressure" )                          // ffffffff
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt68, "@68" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt69, Encoded, NewlineDepth=3 )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "SensorId", 2)                           // VV
+      DecRepeatBlock_StartCount( "Number of Records", 4, 2)   // NNNN
+         DecShortParam( "number of 8-byte fields", 2)             // xx
+         HexLongParam( "Timestamp", 8)                         // tttttttt
+         HexFloatParam( "pressure" )                          // ffffffff
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAt69, "@69" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAtT4, NewlineDepth=3 )
+   RepeatBlock_Start( 1)   
+      DecShortParam( "Sensor Number", 2 )                    // TT
+      HexRepeatBlock_StartCount( "Number of records", 4, 2)  // nnnn
+         HexLongParam(  "TimeStamp",   8 )                   // ssssssss
+         HexFloatParam( "Thermistor 1"   )                   // hhhhhhhh
+         HexFloatParam( "Thermistor 2"   )                   // hhhhhhhh
+         HexFloatParam( "Thermistor 3"   )                   // hhhhhhhh
+         HexFloatParam( "Thermistor 4"   )                   // hhhhhhhh
+         HexFloatParam( "Thermistor 5"   )                   // hhhhhhhh
+         HexFloatParam( "Thermistor 6"   )                   // hhhhhhhh
+         HexFloatParam( "Thermistor 7"   )                   // hhhhhhhh
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAtT4, "@T4" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmperAG, Encoded )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "VPS", 2)
+      HexRepeatBlock_StartCount( "Number of Records", 2, 2)
+         HexFloatParam( "VaporPressure")
+      RepeatBlock_End( 2 )
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAmperAG, "&AG" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmper64, Encoded )
+   RepeatBlock_Start( 1 )
+      DecShortParam( "VPS", 2)
+      DecRepeatBlock_StartCount( "Number of Records", 4, 2)
+         DecIntParam( "Queue Index", 5)
+         DecShortParam( "Field Count", 2)
+         HexLongParam(  "Seconds since Epoch", 8)
+         HexFloatParam( "VaporPressure")
+         HexFloatParam( "UllageSpace")
+         HexShortParam( "Qualification Flag", 4)
+      RepeatBlock_End( 2 )
+      DecShortParam( "Reserved", 4)
+   RepeatBlock_End( 1 )
+SerialCmd_End( CmdAmper64, "&64" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAmperAM, Encoded )
+   DecRepeatBlock_StartCount( "Number of Records", 4, 2)
+      DecShortParam( "VPS", 2)
+      StringParam(   "YYYYMMDD", 8 )
+      HexFloatParam( "Throughput")
+      HexFloatParam( "MaxPressure")
+      HexFloatParam( "AvgPressure")
+      HexFloatParam( "MinPressure")
+      HexLongParam( "GrossTestFaults", 8)
+      DecShortParam( "G", 1)
+      HexLongParam( "GrossTestAlarmSeconds", 8)
+      StringParam( "GrossResults", 1)
+      HexFloatParam( "ExtremeGrossFaultPress")
+      HexLongParam( "GrossTestFaultSec", 8)
+      HexLongParam( "DegTestFaults", 8)
+      DecShortParam( "D", 1)
+      HexLongParam( "DegTestAlarmSeconds", 8)
+      StringParam( "DegResults", 1)
+      HexFloatParam( "ExtremeDegFaultPress")
+      HexLongParam( "DegTestAlarmSec", 8)
+      DecShortParam( "I", 1)
+      HexLongParam( "SensorTestSeconds", 8)
+	  StringParam(" SensorResults", 1)
+      HexFloatParam( "MaximumPressure")
+      HexFloatParam( "AveragePressure")
+      HexFloatParam( "ExtremeMaxSensorPress")
+      StringParam( "U", 1)
+      StringParam( "S", 1)
+      StringParam( "C", 1)
+   RepeatBlock_End(2)
+SerialCmd_End( CmdAmperAM, "&AM" )
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAt7L, Encoded)
+   RepeatBlock_Start( 1 )
+      DecShortParam( "Sensor Number", 2)       // SS   
+      DecRepeatBlock_StartCount( "Number of fields", 2, 2)
+         HexFloatParam( "Sample Counter Value,Last Reading,Current Average Value,Temperature" )  // FFFFFFFF
+      RepeatBlock_End(2)
+   RepeatBlock_End(1)
+SerialCmd_End( CmdAt7L, "@7L" )
+
+
+//-----------------------------------------------------------------------------
+SerialCmd_Start( CmdAtC3 )
+   HexRepeatBlock_StartCount( "Number of Records", 2, 1)
+     HexShortParam( "FuelPos", 4 )
+     HexCharParam( "event_type", 2)
+     HexCharParam( "meter_count", 2)
+     HexCharParam( "error_flag", 2)
+     HexLongParam( "Timestamp", 8)
+     HexLongParam( "Delay", 8)
+     HexCharParam( "meter_id0", 2)
+     HexFloatParam( "Transaction0")
+     HexDoubleParam( "Cumulative0")
+     HexCharParam( "meter_id1", 2)
+     HexFloatParam( "Transaction1")
+     HexDoubleParam( "Cumulative1")
+   RepeatBlock_End(1)
+SerialCmd_End( CmdAtC3, "@C3" )
+

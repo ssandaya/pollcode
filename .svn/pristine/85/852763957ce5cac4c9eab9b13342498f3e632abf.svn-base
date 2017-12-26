@@ -1,0 +1,18 @@
+#!/bin/bash 
+
+DESTINATION_DIR=Y:/
+if [ ! -d "${DESTINATION_DIR}" ] ; then
+  net use Y: \\\\10.20.95.59\\AVA /user:sandaya xpoint6
+
+  if [ ! -d "${DESTINATION_DIR}" ] ; then
+    echo "Destination dir ${DESTINATION_DIR} not found!"
+    exit 1
+  fi
+fi
+ls -al Y:/AVA-SiteData
+
+cp -v /cygdrive/c/cygwin64/home/simulate/proc/polldata/AVA-SiteData/150883/*.csv /cygdrive/y/AVA-SiteData/150883/
+cp -v /cygdrive/c/cygwin64/home/simulate/proc/polldata/AVA-SiteData/822027/*.csv /cygdrive/y/AVA-SiteData/822027/
+cp -v /cygdrive/c/cygwin64/home/simulate/proc/polldata/AVA-SiteData/828950/*.csv /cygdrive/y/AVA-SiteData/828950/
+
+net use Y: /delete /y
