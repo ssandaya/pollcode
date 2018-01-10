@@ -82,7 +82,7 @@ do
     date_today=$(date +%Y%m%d)
     echo "${dir}/${subdir}"
     # echo "${date_past} ${date_today}"
-    for ((i = 5;  i >= 0; i--  )) {
+    for ((i = 4;  i >= 0; i--  )) {
       pwd
       # echo "${dir}-$(date -d "-$i days" +%Y%m%d)*.txt"  
       gurps_files="${dir}-$(date -d "-$i days" +%Y%m%d)*.txt" 

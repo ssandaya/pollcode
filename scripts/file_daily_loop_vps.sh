@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 SOURCE_DIR="N:/AVA-PollData/"
 if [ ! -d "${SOURCE_DIR}" ] ; then
@@ -17,6 +17,7 @@ SITE_ID=""
 SITE_DESC=""
 WIN_SOURCE_DIR="C:/Users/simulate/VPS-PollData/"
 WIN_DESTINATION_DIR="C:/cygwin64/home/simulate/proc/polldata/vps_$(date +%Y%m%d)/"
+TMP_DESTINATION_DIR="C:/cygwin64/tmp/polldata/vps_$(date +%Y%m%d)/"
 
 GURPS_DIR="/cygdrive/c/Users/simulate/dev/projects/polldata2/exe/"
 echo "Gurps Dir: ${GURPS_DIR}"
@@ -63,17 +64,20 @@ do
 	 	elif [[ "${subdir}" == *"i@C3"* ]]; then
 	    # echo ${dir}
 	    SITE_DESC="DimEvents"
+    elif [[ "${subdir}" == *"i&1400"* ]]; then
+      # echo ${dir}
+      SITE_DESC="UllagePressure"
 	  fi
     cd "${subdir}"
-    date_past=$(date -d "-7 days" +%Y%m%d)
+    date_past=$(date -d "-4 days" +%Y%m%d)
     date_today=$(date +%Y%m%d)
-    echo "Dir/Subdir: ${dir}/${subdir}"
+    # echo "Dir/Subdir: ${dir}/${subdir}"
 
-    for ((i = 6;  i >= 0; i--  )) {
+    for ((i = 4;  i >= 0; i--  )) {
       pwd
       # echo "${dir}-$(date -d "-$i days" +%Y%m%d)*.txt"  
       gurps_files="${SITE_ID}_${SITE_DESC}_$(date -d "-$i days" +%Y%m%d)*.txt" 
-      echo "GurpsFiles: ${gurps_files}"
+      # echo "GurpsFiles: ${gurps_files}"
 
       ls ${gurps_files}
       if [ $? -ne 0 ]; then
@@ -98,12 +102,27 @@ do
 
         # if [ ! -f $FINAL_DESTINATION_FILE_PATHNAME ]; then
           echo "${WIN_SOURCE_DIR}${dir}/${subdir}/${filer} -> ${WIN_DESTINATION_DIR}${dir}/${subdir}/${SITE_ID}_${SITE_DESC}_${date_part}" 
-          mkdir -p "${WIN_DESTINATION_DIR}${dir}/${subdir}"
           if [ ! -d "${WIN_DESTINATION_DIR}${dir}/${subdir}" ]; then
-             echo "${WIN_DESTINATION_DIR}${dir}/${subdir} not created!"
-             exit 1
+            mkdir -p "${WIN_DESTINATION_DIR}${dir}/${subdir}"
           fi
-    	    ${GURPS_DIR}gurps.exe  ${WIN_SOURCE_DIR}${dir}/${subdir}/${filer}  ${WIN_DESTINATION_DIR}${dir}/${subdir}/${filer}
+          if [ $(grep "UllagePressure" <<< ${filer}) ]; then
+            
+            # echo "UllagePressure File:-> ${filer}"
+            if [ ! -d ${TMP_DESTINATION_DIR}${dir}/${subdir} ]; then
+              mkdir -p ${TMP_DESTINATION_DIR}${dir}/${subdir}
+            fi
+            grep 'i&1400' ${WIN_SOURCE_DIR}${dir}/${subdir}/${filer} > ${TMP_DESTINATION_DIR}${dir}/${subdir}/${filer}
+            wait
+            sync -f ${TMP_DESTINATION_DIR}${dir}/${subdir}/${filer}
+            ${GURPS_DIR}gurps.exe -X=false ${TMP_DESTINATION_DIR}${dir}/${subdir}/${filer}  ${WIN_DESTINATION_DIR}${dir}/${subdir}/${filer}
+            wait
+            sync ${WIN_DESTINATION_DIR}${dir}/${subdir}/${filer}
+          else
+            # echo ${WIN_DESTINATION_DIR}${dir}/${subdir}/${filer}
+            ${GURPS_DIR}gurps.exe -X=false ${WIN_SOURCE_DIR}${dir}/${subdir}/${filer}  ${WIN_DESTINATION_DIR}${dir}/${subdir}/${filer}
+            wait
+            sync ${WIN_DESTINATION_DIR}${dir}/${subdir}/${filer}
+          fi
         # fi
       done
     }

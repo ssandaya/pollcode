@@ -15,8 +15,8 @@ class VpsUnsortedGmtFilesDE {
         String dataLine = ""
         int tankNo
 
-        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20171225/" //+ PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_20171225/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
 
         def basefolder = new File(basepath)
         if( !basefolder.exists() ) {
@@ -107,39 +107,48 @@ class VpsUnsortedGmtFilesDE {
                             dataLine = line
                             if (!line.empty) {
                                 ArrayList dataElement = dataLine.split(",")
-                                DimEvent de = new DimEvent()
-                                        .setTimeStamp(Integer.valueOf(dataElement[4]))
-                                        .setDdate(PollDataUtility.toDdate(new Long(dataElement[4])))
-                                        .setFuelPos(Integer.valueOf(dataElement[0]))
-                                        .setEventType(Integer.valueOf(dataElement[1]) == 0 ? true : false)
-                                        .setErrorFlag(Integer.valueOf(dataElement[3]))
-                                        .setNumMeters(Integer.valueOf(dataElement[2]))
-                                        .setMeter1(Integer.valueOf(dataElement[6]))
-                                        .setTransVol1(Double.valueOf(dataElement[7]))
-                                        .setTotalVol1(Double.valueOf(dataElement[8]))
-                                        .setMeter2(Integer.valueOf(dataElement[9]))
-                                        .setTransVol2(Double.valueOf(dataElement[10]))
-                                        .setTotalVol2(Double.valueOf(dataElement[11]))
+//                                println dataElement
+                                boolean bNull = false
+                                for (int i=0; i<=11; i++) {
+                                    def el = dataElement[i]
+                                    if (dataElement[i] == null || dataElement[i] == "null") {
+                                        bNull = true
+                                    }
+                                }
+                                if (!bNull) {
+                                    DimEvent de = new DimEvent()
+                                            .setTimeStamp(Integer.valueOf(dataElement[4]))
+                                            .setDdate(PollDataUtility.toDdate(new Long(dataElement[4])))
+                                            .setFuelPos(Integer.valueOf(dataElement[0]))
+                                            .setEventType(Integer.valueOf(dataElement[1]) == 0 ? true : false)
+                                            .setErrorFlag(Integer.valueOf(dataElement[3]))
+                                            .setNumMeters(Integer.valueOf(dataElement[2]))
+                                            .setMeter1(Integer.valueOf(dataElement[6]))
+                                            .setTransVol1(Double.valueOf(dataElement[7]))
+                                            .setTotalVol1(Double.valueOf(dataElement[8]))
+                                            .setMeter2(Integer.valueOf(dataElement[9]))
+                                            .setTransVol2(Double.valueOf(dataElement[10]))
+                                            .setTotalVol2(Double.valueOf(dataElement[11]))
 
-                                String fn = hdfilename2 + de.getDdate().substring(0, 10).replaceAll("/", "-") + ".csv"
+                                    String fn = hdfilename2 + de.getDdate().substring(0, 10).replaceAll("/", "-") + ".csv"
 //                                println fn
 
-                                def dailyfile_new = new File(folder, fn)
-                                if (dailyfile_new.toString() != dailyfile.toString()) {
-                                    if (!dailyfile_new.exists()) {
-                                        dailyfile_new << headerarray2.join(",") + "\n"
-                                        sleep(1000)
-                                    }
-                                    dailyfile_new << de.toString()
-                                } else {
-                                    if (!dailyfile.exists()) {
-                                        dailyfile << headerarray2.join(",") + "\n"
-                                        sleep(1000)
-                                    }
-                                    dailyfile << de.toString()
+                                    def dailyfile_new = new File(folder, fn)
+                                    if (dailyfile_new.toString() != dailyfile.toString()) {
+                                        if (!dailyfile_new.exists()) {
+                                            dailyfile_new << headerarray2.join(",") + "\n"
+                                            sleep(1000)
+                                        }
+                                        dailyfile_new << de.toString()
+                                    } else {
+                                        if (!dailyfile.exists()) {
+                                            dailyfile << headerarray2.join(",") + "\n"
+                                            sleep(1000)
+                                        }
+                                        dailyfile << de.toString()
 
+                                    }
                                 }
-
                             }
                         }
                         lineno += 1

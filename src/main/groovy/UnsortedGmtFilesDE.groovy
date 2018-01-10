@@ -19,20 +19,7 @@ class UnsortedGmtFilesDE {
         String headerLine = ""
         String dataLine = ""
         int tankNo
-//        String basepath = "C:/Users/sandaya/dev/tasks/polldata/"
-//        String basepath = "X:/AVA-TestData"
-//        String basepath = "C:/Users/sandaya/dev/tasks/polldata/"
-//        String destpath = "C:/Users/sandaya/temp/"
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/UnsortedDeData828950_20171003/"
-//        String basepath = "c:/cygwin64/home/simulate/proc/polldata/dimevents828950_20171003/"
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/Unsorted5DeData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-//        String basepath = "c:/cygwin64/home/simulate/proc/polldata/gurps_" + PollDataUtility.toYyyyMmDdDate() + "/"
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/UnsortedDeData_20171013/"
-//        String basepath = "C:/cygwin64/home/simulate/proc/polldata/gurps_20171013/"
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/UnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-//        String basepath = "C:/cygwin64/home/simulate/proc/polldata/gurps_" + PollDataUtility.toYyyyMmDdDate() + "/"
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/UnsortedData_oct2b/" // + PollDataUtility.toYyyyMmDdDate() + "/"
-//        String basepath = "C:/cygwin64/home/simulate/proc/polldata/gurps_fix_oct_20171016/"
+
         String destpath = "C:/cygwin64/home/simulate/proc/polldata/UnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
         String basepath = "C:/cygwin64/home/simulate/proc/polldata/gurps_" + PollDataUtility.toYyyyMmDdDate() + "/"
 

@@ -19,8 +19,8 @@ class DbViewrGmtFilesUL {
         String dataLine = ""
         int tankNo
 
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/dbviewer_20171225/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
-        String destpath = "C:/cygwin64/home/simulate/proc/polldata/ullage_20171225/"    //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/dbviewer_20180101/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String destpath = "C:/cygwin64/home/simulate/proc/polldata/ullage_20180101/"    //+ PollDataUtility.toYyyyMmDdDate() + "/"
 
         def count = 0
         def tempcount = 0

@@ -21,7 +21,7 @@ if [ -d ${DESTINATION_SITE_150883} ]; then
   for file in *
   do
   	# echo ${file}
-   	if [ ! -f /cygdrive/y/AVA-SiteData/150883/${file} ] && [ ! $(grep $(date +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-5 days" +%Y-%m-%d) <<< ${file}) ]
+   	if [ ! -f /cygdrive/y/AVA-SiteData/150883/${file} ] && [ ! $(grep $(date +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-4 days" +%Y-%m-%d) <<< ${file}) ]
   	then
   	  cp -v ${file} /cygdrive/y/AVA-SiteData/150883/${file}
   	  # echo ${file} /cygdrive/y/AVA-SiteData/150883/${file}
@@ -34,7 +34,7 @@ if [ -d ${DESTINATION_SITE_822027} ]; then
   for file in *
   do
   	# echo ${file}
-   	if [ ! -f /cygdrive/y/AVA-SiteData/822027/${file} ] && [ ! $(grep $(date +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-5 days" +%Y-%m-%d) <<< ${file}) ]
+   	if [ ! -f /cygdrive/y/AVA-SiteData/822027/${file} ] && [ ! $(grep $(date +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-4 days" +%Y-%m-%d) <<< ${file}) ]
    	then
   	  cp -v ${file} /cygdrive/y/AVA-SiteData/822027/${file}
   	  # echo ${file} /cygdrive/y/AVA-SiteData/822027/${file}
@@ -47,7 +47,7 @@ if [ -d ${DESTINATION_SITE_828950} ]; then
   for file in *
   do
   	# echo ${file}
-   	if [ ! -f /cygdrive/y/AVA-SiteData/828950/${file} ] && [ ! $(grep $(date +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-5 days" +%Y-%m-%d) <<< ${file}) ]
+   	if [ ! -f /cygdrive/y/AVA-SiteData/828950/${file} ] && [ ! $(grep $(date +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-4 days" +%Y-%m-%d) <<< ${file}) ]
    	then
   	  cp -v ${file} /cygdrive/y/AVA-SiteData/828950/${file}
   	  # echo ${file} /cygdrive/y/AVA-SiteData/828950/${file}
@@ -60,7 +60,7 @@ if [ -d ${DESTINATION_SITE_843444} ]; then
   for file in *
   do
     # echo ${file}
-    if [ ! -f /cygdrive/y/AVA-SiteData/843444/${file} ] && [ ! $(grep $(date +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-5 days" +%Y-%m-%d) <<< ${file}) ]
+    if [ ! -f /cygdrive/y/AVA-SiteData/843444/${file} ] && [ ! $(grep $(date +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-4 days" +%Y-%m-%d) <<< ${file}) ]
     then
       cp -v ${file} /cygdrive/y/AVA-SiteData/843444/${file}
       # echo ${file} /cygdrive/y/AVA-SiteData/843444/${file}

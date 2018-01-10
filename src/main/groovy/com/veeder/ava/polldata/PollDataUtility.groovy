@@ -202,9 +202,37 @@ class PollDataUtility {
     }
 
     static void main(args) {
-        println toDdate(1496980793L)  //2017/06/09 03:59:53
-        println toDdate(1497153598L)  //2017/06/11 03:59:58
-        println toDdate(1497067209L)  //2017/06/10 04:00:09
+        println toDdate(1514789820L)  //2017/06/09 03:59:53
+        println toDdate(1514789840L)  //2017/06/11 03:59:58
+        println toDdate(1514789860L)  //2017/06/10 04:00:09
+        println toDdate(1514789900L)  //2017/06/10 04:00:09
+        println toDdate(1514789920L)  //2017/06/10 04:00:09
+
+        println toDdate(1514790001)  //2017/06/09 03:59:53
+        println toDdate(1514790022)  //2017/06/11 03:59:58
+        println toDdate(1514790040)  //2017/06/10 04:00:09
+        println toDdate(1514790061)  //2017/06/10 04:00:09
+        println toDdate(1514790081)  //2017/06/10 04:00:09
+        println toDdate(1514790101)  //2017/06/09 03:59:53
+        println toDdate(1514790121)  //2017/06/11 03:59:58
+        println toDdate(1514790141)  //2017/06/10 04:00:09
+        println toDdate(1514790161)  //2017/06/10 04:00:09
+        println toDdate(1514790181)  //2017/06/10 04:00:09
+        println toDdate(1514790202)  //2017/06/09 03:59:53
+        println toDdate(1514790223)  //2017/06/11 03:59:58
+        println toDdate(1514790241)  //2017/06/10 04:00:09
+        println toDdate(1514790261)  //2017/06/10 04:00:09
+        println toDdate(1514790302)  //2017/06/10 04:00:09
+        println toDdate(1514790321)  //2017/06/09 03:59:53
+        println toDdate(1514790342)  //2017/06/11 03:59:58
+        println toDdate(1514790362)  //2017/06/10 04:00:09
+        println toDdate(1514790382)  //2017/06/10 04:00:09
+        println toDdate(1514790402)  //2017/06/10 04:00:09
+        println toDdate(1514790422)  //2017/06/09 03:59:53
+        println toDdate(1514790442)  //2017/06/11 03:59:58
+        println toDdate(1514790462)  //2017/06/10 04:00:09
+        println toDdate(1514790482)  //2017/06/10 04:00:09
+        println toDdate(1514790502)  //2017/06/10 04:00:09
         println()
         println toGmtTimestampDate("2017-09-04 00:00:00")       //1504483200
         println toGmtTimestampDate("2017-09-04 04:55:30")       //1504500930

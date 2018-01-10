@@ -2,7 +2,6 @@
  * Created by sandaya on 6/30/2017.
  */
 import com.veeder.ava.polldata.PollDataUtility
-import com.veeder.ava.polldata.ProbeSample5sec
 import com.veeder.ava.polldata.ProbeSamples
 import com.veeder.ava.polldata.UllagePressure
 import groovy.io.FileType
@@ -17,8 +16,8 @@ class VpsSortedFilesPS {
         String dataLine = ""
         int tankNo
 
-        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_20171225/"      //+ PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20171225/" //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
 
 
         def basefolder = new File(basepath)

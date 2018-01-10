@@ -34,8 +34,9 @@ class VpsUnsortedGmtFilesPS {
         String dataLine = ""
         int tankNo
 
-        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20171225/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_20171225/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+
 
         def count = 0
         def tempcount = 0
@@ -112,36 +113,45 @@ class VpsUnsortedGmtFilesPS {
 
 
                              */
-                            ProbeSamples ps = new ProbeSamples()
-                                    .setTimeStamp(Integer.valueOf(dataElement[13]))
-                                    .setDdate(PollDataUtility.toDdate(Integer.valueOf(dataElement[13])))
-                                    .setTankId(Integer.valueOf(dataElement[0]))
-                                    .setProductCode(Integer.valueOf(dataElement[1]))
-                                    .setProbeType(Integer.valueOf(dataElement[2]))
-                                    .setStatusFlags(Integer.valueOf(dataElement[3]))
-                                    .setSampleCount(Integer.valueOf(dataElement[4]))
-                                    .setFuelHeight(Double.valueOf(dataElement[5]))
-                                    .setWaterHeight(Double.valueOf(dataElement[6]))
+                            boolean bNull = false
+                            for (int i=0; i<=13; i++) {
+                                def el = dataElement[i]
+                                if (dataElement[i] == null || dataElement[i] == "null") {
+                                    bNull = true
+                                }
+                            }
+                            if (!bNull) {
+                                ProbeSamples ps = new ProbeSamples()
+                                        .setTimeStamp(Integer.valueOf(dataElement[13]))
+                                        .setDdate(PollDataUtility.toDdate(Integer.valueOf(dataElement[13])))
+                                        .setTankId(Integer.valueOf(dataElement[0]))
+                                        .setProductCode(Integer.valueOf(dataElement[1]))
+                                        .setProbeType(Integer.valueOf(dataElement[2]))
+                                        .setStatusFlags(Integer.valueOf(dataElement[3]))
+                                        .setSampleCount(Integer.valueOf(dataElement[4]))
+                                        .setFuelHeight(Double.valueOf(dataElement[5]))
+                                        .setWaterHeight(Double.valueOf(dataElement[6]))
 
-                                    .setTemperatures(new ArrayList<Double>([dataElement[7], dataElement[8], dataElement[9], dataElement[10], dataElement[11], dataElement[12]]))
+                                        .setTemperatures(new ArrayList<Double>([dataElement[7], dataElement[8], dataElement[9], dataElement[10], dataElement[11], dataElement[12]]))
 
-                            String fn = hdfilename2 + ps.getDdate().substring(0,10).replaceAll("/","-") + ".csv"
+                                String fn = hdfilename2 + ps.getDdate().substring(0, 10).replaceAll("/", "-") + ".csv"
 //                                println fn
 
-                            def dailyfile_new = new File(folder, fn)
-                            if (dailyfile_new.toString() != dailyfile.toString()) {
-                                if (!dailyfile_new.exists()) {
-                                    dailyfile_new << hdr + "\n"
+                                def dailyfile_new = new File(folder, fn)
+                                if (dailyfile_new.toString() != dailyfile.toString()) {
+                                    if (!dailyfile_new.exists()) {
+                                        dailyfile_new << hdr + "\n"
 //                                    sleep(1000)
-                                }
-                                dailyfile_new << ps.toString()
-                            } else {
-                                if (!dailyfile.exists()) {
-                                    dailyfile << headerarray2.join(",") + "\n"
+                                    }
+                                    dailyfile_new << ps.toString()
+                                } else {
+                                    if (!dailyfile.exists()) {
+                                        dailyfile << headerarray2.join(",") + "\n"
 //                                    sleep(1000)
-                                }
-                                dailyfile << ps.toString()
+                                    }
+                                    dailyfile << ps.toString()
 
+                                }
                             }
 
 
