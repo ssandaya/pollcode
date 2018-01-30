@@ -5,14 +5,13 @@
 
 import com.veeder.ava.polldata.MeterTemperature
 import com.veeder.ava.polldata.PollDataUtility
-import com.veeder.ava.polldata.ProbeSample5sec
 import com.veeder.ava.polldata.ProbeSamples
 import groovy.io.FileType
 
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
-class VpsUnsortedGmtFilesPS {
+class VpsUnsortedGmtFilesLtdPS {
 
     private static String toGmtDate(String unixTimeStamp)
     {
@@ -29,16 +28,14 @@ class VpsUnsortedGmtFilesPS {
     }
 
     static void main(String[] args) {
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd' 'HH:mm:ss")
+        String Site_locale="Site" + args[0]
+
         String headerLine = ""
         String dataLine = ""
         int tankNo
 
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
-//        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
         String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_" + PollDataUtility.toYyyyMmDdDate() + "/"
-
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_" + PollDataUtility.toYyyyMmDdDate() + "/${Site_locale}/"
 
         def count = 0
         def tempcount = 0

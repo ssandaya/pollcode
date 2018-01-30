@@ -3,25 +3,24 @@
  */
 
 
-import com.veeder.ava.polldata.MeterTemperature
+import com.veeder.ava.polldata.DimEvent
 import com.veeder.ava.polldata.PollDataUtility
-import com.veeder.ava.polldata.UllagePressure
 import groovy.io.FileType
 
 import java.text.SimpleDateFormat
 
-class VpsSortedFilesUP {
+class VpsSortedFilesLtdDE {
 
     static void main(String[] args) {
+        String Site_locale=args[0]
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd' 'HH:mm:ss")
         String headerLine = ""
         String dataLine = ""
         int tankNo
 
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_20180108/" //+ PollDataUtility.toYyyyMmDdDate() + "/"
-//        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/" //+ PollDataUtility.toYyyyMmDdDate() + "/"
         String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/${Site_locale}/"
 
         def basefolder = new File(basepath)
         if( !basefolder.exists() ) {
@@ -43,8 +42,7 @@ class VpsSortedFilesUP {
         def dailyfile = new File("", "")
         def dir = new File(basepath)
 
-        ArrayList<UllagePressure> ullagePressures = new ArrayList<>()
-        ArrayList<MeterTemperature> meterTemperatures = new ArrayList<>()
+        ArrayList<DimEvent> dimEvents = new ArrayList<>()
         ArrayList headerarray = new ArrayList()
 
         boolean headerSet = false
@@ -64,12 +62,12 @@ class VpsSortedFilesUP {
 
             dailyfile = new File(folder, filename)
 
-            if (filename.contains("UllagePressure")) {
+            if (filename.contains("DimEvents")) {
                 println "${filename}   ${dailyfile}"
 
                 lineno = 1
                 pressurecount++
-                ullagePressures = new ArrayList<>()
+                dimEvents = new ArrayList<>()
 
                 file.text.eachLine {
                     line -> /*println  "line : $lineno  $line";*/
@@ -80,37 +78,43 @@ class VpsSortedFilesUP {
                             headerSet = true                        }
                         else {
                             ArrayList dataElement = line.split(",")
-                            if (dataElement[3] != "null") {
-                                UllagePressure ul = new UllagePressure()
-                                        .setTankId(Integer.valueOf(dataElement[2]))
-                                        .setTimeStamp(Integer.valueOf(dataElement[0]))
-                                        .setDdate(dataElement[1])
-                                        .setPressure(Double.valueOf(dataElement[3]))
+                            DimEvent de = new DimEvent()
+                                    .setTimeStamp(Integer.valueOf(dataElement[0]))
+                                    .setDdate(dataElement[1])
+                                    .setFuelPos(Integer.valueOf(dataElement[2]))
+                                    .setEventType(Boolean.valueOf(dataElement[3]))
+                                    .setErrorFlag(Integer.valueOf(dataElement[4]))
+                                    .setNumMeters(Integer.valueOf(dataElement[5]))
+                                    .setMeter1(Integer.valueOf(dataElement[6]))
+                                    .setTransVol1(Double.valueOf(dataElement[7]))
+                                    .setTotalVol1(Double.valueOf(dataElement[8]))
+                                    .setMeter2(Integer.valueOf(dataElement[9]))
+                                    .setTransVol2(Double.valueOf(dataElement[10]))
+                                    .setTotalVol2(Double.valueOf(dataElement[11]))
 
-                                ullagePressures.add(ul)
-                            }
+                            dimEvents.add(de)
                         }
                         lineno += 1
                 }
                 // Sort
-                ullagePressures.sort{x,y->
+                dimEvents.sort{x,y->
                     if(x.ddate == y.ddate){
-                        x.tankId <=> y.tankId
+                        x.fuelPos <=> y.fuelPos
                     }else{
                         x.ddate <=> y.ddate
                     }
                 }
 
                 StringBuilder stringBuilder = new StringBuilder()
-                UllagePressure upbefore = new UllagePressure()
-                for (UllagePressure ullagepressure in ullagePressures) {
-                    if (upbefore.toString().equals(ullagepressure.toString())) {
-                        upbefore = ullagepressure.clone()
+                DimEvent debefore = new DimEvent()
+                for (DimEvent dimEvent in dimEvents) {
+                    if (debefore.toString().equals(dimEvent.toString())) {
+                        debefore = dimEvent.clone()
                         continue
                     }
 
-                    stringBuilder.append(ullagepressure.toString())
-                    upbefore = ullagepressure.clone()
+                    stringBuilder.append(dimEvent.toString())
+                    debefore = dimEvent.clone()
                 }
 
                 // check if merge needed
@@ -119,40 +123,48 @@ class VpsSortedFilesUP {
 
                     def dailyLineNo = 1
                     def dailyHeader = ""
-                    ArrayList<UllagePressure> dailyUllagePressures = new ArrayList<>()
+                    ArrayList<DimEvent> dailyDimEvents = new ArrayList<>()
                     dailyfile.eachLine { dailyline ->
                         if (dailyLineNo == 1) {
                             dailyHeader = dailyline
                         } else {
                             ArrayList dataElement = dailyline.split(",")
-                            UllagePressure dailyUl = new UllagePressure()
-                                    .setTankId(Integer.valueOf(dataElement[2]))
+                            DimEvent dailyDE = new DimEvent()
                                     .setTimeStamp(Integer.valueOf(dataElement[0]))
                                     .setDdate(dataElement[1])
-                                    .setPressure(Double.valueOf(dataElement[3]))
+                                    .setFuelPos(Integer.valueOf(dataElement[2]))
+                                    .setEventType(Boolean.valueOf(dataElement[3]))
+                                    .setErrorFlag(Integer.valueOf(dataElement[4]))
+                                    .setNumMeters(Integer.valueOf(dataElement[5]))
+                                    .setMeter1(Integer.valueOf(dataElement[6]))
+                                    .setTransVol1(Double.valueOf(dataElement[7]))
+                                    .setTotalVol1(Double.valueOf(dataElement[8]))
+                                    .setMeter2(Integer.valueOf(dataElement[9]))
+                                    .setTransVol2(Double.valueOf(dataElement[10]))
+                                    .setTotalVol2(Double.valueOf(dataElement[11]))
 
-                            dailyUllagePressures.add(dailyUl)
+                            dailyDimEvents.add(dailyDE)
                         }
                         dailyLineNo += 1
                     }
                     // Sort
-                    dailyUllagePressures.sort{x,y->
+                    dimEvents.sort{x,y->
                         if(x.ddate == y.ddate){
-                            x.tankId <=> y.tankId
+                            x.fuelPos <=> y.fuelPos
                         }else{
                             x.ddate <=> y.ddate
                         }
                     }
                     StringBuilder dailyStringBuilder = new StringBuilder()
-                    UllagePressure dailyUpbefore = new UllagePressure()
-                    for (UllagePressure dailyUllagePressure in dailyUllagePressures) {
-                        if (dailyUpbefore.toString().equals(dailyUllagePressure.toString())) {
-                            dailyUpbefore = dailyUllagePressure.clone()
+                    DimEvent dailyDebefore = new DimEvent()
+                    for (DimEvent dailyDimEvent in dailyDimEvents) {
+                        if (dailyDebefore.toString().equals(dailyDimEvent.toString())) {
+                            dailyDebefore = dailyDimEvent.clone()
                             continue
                         }
 
-                        dailyStringBuilder.append(dailyUllagePressure.toString())
-                        dailyUpbefore = dailyUllagePressure.clone()
+                        dailyStringBuilder.append(dailyDimEvent.toString())
+                        dailyDebefore = dailyDimEvent.clone()
                     }
                     dailyfile.delete()
                     dailyfile << dailyHeader

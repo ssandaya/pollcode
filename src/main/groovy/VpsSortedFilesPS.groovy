@@ -16,8 +16,10 @@ class VpsSortedFilesPS {
         String dataLine = ""
         int tankNo
 
-        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+//        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
 
 
         def basefolder = new File(basepath)

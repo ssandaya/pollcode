@@ -1,7 +1,18 @@
 #!/bin/bash
+source ./config/$1
+
+SITE_ID="${site_id}"
+PAST_DAYS_FROM="$2"
+PAST_DAYS_TO="$3"
+
+echo "${SITE_ID} ${PAST_DAYS_FROM} ${PAST_DAYS_TO}"
+
+for ((i = ${PAST_DAYS_FROM};  i >= ${PAST_DAYS_TO}; i--  )) {
+
+  echo ${i}
+}
 
 
-SITE_ID=""
 SITE_DESC=""
 WIN_SOURCE_DIR="\\\\10.20.95.59\\AVA\\VPS-PollData\\"
 WIN_DESTINATION_DIR="C:/cygwin64/home/simulate/proc/polldata/vps_$(date +%Y%m%d)/"
@@ -31,10 +42,8 @@ fi
 
 cd ${WIN_SOURCE_DIR}
 pwd
-sites="Site*"
-echo "Sites: ${sites}"
 
-for dirc in ${sites} 
+for dirc in Site${SITE_ID} 
 do
   pwd
   dir=${dirc%*/}
@@ -57,7 +66,7 @@ do
     date_past=$(date -d "-8 days" +%Y%m%d)
     date_today=$(date +%Y%m%d)
 
-    for ((i = 8;  i >= 0; i--  )) {
+    for ((i = ${PAST_DAYS_FROM};  i >= ${PAST_DAYS_TO}; i--  )) {
       pwd
       gurps_files="${SITE_ID}_${SITE_DESC}_$(date -d "-$i days" +%Y%m%d)*.txt" 
 

@@ -7,18 +7,18 @@ import com.veeder.ava.polldata.DimEvent
 import com.veeder.ava.polldata.PollDataUtility
 import groovy.io.FileType
 
-class VpsUnsortedGmtFilesDE {
+class VpsUnsortedGmtFilesLtdDE {
 
     static void main(String[] args) {
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd' 'HH:mm:ss")
+        String Site_locale="Site" + args[0]
         String headerLine = ""
         String dataLine = ""
         int tankNo
+        println "${Site_locale}"
 
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
-//        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_20180108/"  //+ PollDataUtility.toYyyyMmDdDate() + "/"
         String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_" + PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_" + PollDataUtility.toYyyyMmDdDate() + "/${Site_locale}/"
 
         def basefolder = new File(basepath)
         if( !basefolder.exists() ) {

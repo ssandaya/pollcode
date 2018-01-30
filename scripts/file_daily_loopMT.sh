@@ -2,7 +2,7 @@
 
 SOURCE_DIR="N:/poll/data/"
 if [ ! -d "${SOURCE_DIR}" ] ; then
-  net use N: \\\\gvrsimvap01\\Share\\N /user:sandaya Fye4260421
+  net use N: \\\\gvrsimvap01\\Share\\N /user:sandaya Ssa4260421
 
   if [ ! -d "${SOURCE_DIR}" ] ; then
     echo "Destination dir ${SOURCE_DIR} not found!"
@@ -12,17 +12,15 @@ if [ ! -d "${SOURCE_DIR}" ] ; then
   fi
 fi
 
-
 SITE_ID=""
 SITE_DESC=""
 DESTINATION_DIR="/cygdrive/c/tmp/polldata/"
 WIN_SOURCE_DIR="N:/poll/data/"
-WIN_DESTINATION_DIR="c:/cygwin64/home/simulate/proc/polldata/gurps_20170615/"
+WIN_DESTINATION_DIR="c:/cygwin64/home/simulate/proc/polldata/gurps_R20171225/"
 
 GURPS_DIR="/cygdrive/c/Users/simulate/dev/projects/polldata2/exe/"
 PROCESSING_DIR="/cygdrive/c/cygwin64/home/simulate/proc/proclogs/"
 
-# FINAL_DESTINATION_FILE_BASE=X:/AVA-SiteData
 FINAL_DESTINATION_FILE_BASE=C:/cygwin64/home/simulate/proc/polldata/AVA-SiteData
 
 countMt=0
@@ -40,7 +38,8 @@ if [ ! -d "${WIN_DESTINATION_DIR}" ]; then
    exit 1
 fi
 
-for dir in 0050831045b2 0050831045a0 0050831045a2
+# for dir in 0050831045b2 0050831045a0 0050831045a2
+for dir in 0050831045a2
 do
   pwd
   dir=${dir%*/}
@@ -58,7 +57,8 @@ do
   echo ${SITE_ID}
 
   cd ${dir##*/}
-  for subdir in i@T* i@67* i@68* i@AM*
+  # for subdir in i@T* i@67* i@68* i@AM*
+  for subdir in i@T* 
   do 
     pwd
     subdir=${subdir%*/}
@@ -81,7 +81,7 @@ do
     # date_today=$(date +%Y%m%d)
     echo "${dir}/${subdir}"
     # echo "${date_past} ${date_today}"
-    for ((i = 121;  i >= 90; i--  )) {
+    for ((i = 27;  i >= 25; i--  )) {
       pwd
       # echo "${dir}-$(date -d "-$i days" +%Y%m%d)*.txt"  
       gurps_files="${dir}-$(date -d "-$i days" +%Y%m%d)*.txt" 

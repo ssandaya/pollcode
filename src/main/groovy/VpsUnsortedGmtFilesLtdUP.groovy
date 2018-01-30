@@ -8,16 +8,18 @@ import com.veeder.ava.polldata.PollDataUtility
 import com.veeder.ava.polldata.UllagePressure
 import groovy.io.FileType
 
-class VpsUnsortedGmtFilesUP {
+class VpsUnsortedGmtFilesLtdUP {
 
     static void main(String[] args) {
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd' 'HH:mm:ss")
+        String Site_locale="Site" + args[0]
+
         String headerLine = ""
         String dataLine = ""
         int tankNo
 
         String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_" + PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_" + PollDataUtility.toYyyyMmDdDate() + "/${Site_locale}/"
+
 
         def basefolder = new File(basepath)
         if( !basefolder.exists() ) {

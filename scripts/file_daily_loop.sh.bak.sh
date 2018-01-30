@@ -2,7 +2,7 @@
 
 SOURCE_DIR="N:/poll/data/"
 if [ ! -d "${SOURCE_DIR}" ] ; then
-  net use N: \\\\gvrsimvap01\\Share\\N /user:sandaya Ssa4260421
+  net use N: \\\\gvrsimvap01\\Share\\N /user:sandaya BdSa998466
 
   if [ ! -d "${SOURCE_DIR}" ] ; then
     echo "Destination dir ${SOURCE_DIR} not found!"
@@ -44,12 +44,16 @@ do
   dir=${dir%*/}
   echo ${dir##*/}
   if  [ ${dir} == "0050831045b2" ]; then
+    # echo ${dir}
     SITE_ID="822027"
   elif [ ${dir} == "0050831045a0" ]; then
+    # echo ${dir}
     SITE_ID="150883"
   elif [ ${dir} == "0050831045a2" ]; then
+    # echo ${dir}
     SITE_ID="828950"
   elif [ ${dir} == "005083109191" ]; then
+    # echo ${dir}
     SITE_ID="843444"
   fi
   echo ${SITE_ID}
@@ -59,25 +63,33 @@ do
   do 
     pwd
     subdir=${subdir%*/}
+    # echo ${subdir##*/}
     if [[ ${subdir} == *"i@T"* ]]; then
+	    # echo ${dir}
 	    SITE_DESC="MeterTemperature"
 	 	elif [[ "${subdir}" == *"i@68"* ]]; then
+	    # echo ${dir}
 	    SITE_DESC="UllagePressure"
     elif [[ "${subdir}" == *"i@67"* ]]; then
+      # echo ${dir}
       SITE_DESC="5secProbeSamples"
     elif [[ "${subdir}" == *"i@AM"* ]]; then
+      # echo ${dir}
       SITE_DESC="DimEvents"
 	  fi
     cd "${subdir##*/}"
     date_past=$(date -d "-5 days" +%Y%m%d)
     date_today=$(date +%Y%m%d)
     echo "${dir}/${subdir}"
+    # echo "${date_past} ${date_today}"
     for ((i = 4;  i >= 0; i--  )) {
       pwd
+      # echo "${dir}-$(date -d "-$i days" +%Y%m%d)*.txt"  
       gurps_files="${dir}-$(date -d "-$i days" +%Y%m%d)*.txt" 
     
       ls ${gurps_files}
       if [ $? -ne 0 ]; then
+        # echo "${dir}/${subdir}/${gurps_files} not found!"
         continue
       fi
 
@@ -89,18 +101,21 @@ do
           continue
         fi
   	 	  CURRENT_DIR=`pwd`
+  	    # echo ${filer}
         SOURCE_FILE=${dir}/${subdir}/${filer}
         GURP_FILE=${WIN_DESTINATION_DIR}${dir}/${subdir}/${SITE_ID}_${SITE_DESC}_${filer:13}
         date_file=${filer:13:8}
         date_part="${date_file:0:4}-${date_file:4:2}-${date_file:6:2}.csv"
         FINAL_DESTINATION_FILE_PATHNAME=${FINAL_DESTINATION_FILE_BASE}/${SITE_ID}/${SITE_ID}_${SITE_DESC}_${date_part}
-        echo "${WIN_SOURCE_DIR}${dir}/${subdir}/${filer} -> ${WIN_DESTINATION_DIR}${dir}/${subdir}/${SITE_ID}_${SITE_DESC}_${filer:13}" 
-        mkdir -p ${WIN_DESTINATION_DIR}${dir}/${subdir}
-        if [ ! -d "${WIN_DESTINATION_DIR}${dir}/${subdir}" ]; then
-           echo "${WIN_DESTINATION_DIR}${dir}/${subdir} not created!"
-           exit 1
-        fi
-  	    ${GURPS_DIR}gurps.exe  ${WIN_SOURCE_DIR}${dir}/${subdir}/${filer}  ${WIN_DESTINATION_DIR}${dir}/${subdir}/${SITE_ID}_${SITE_DESC}_${filer:13}
+        # if [ ! -f $FINAL_DESTINATION_FILE_PATHNAME ]; then
+          echo "${WIN_SOURCE_DIR}${dir}/${subdir}/${filer} -> ${WIN_DESTINATION_DIR}${dir}/${subdir}/${SITE_ID}_${SITE_DESC}_${filer:13}" 
+          mkdir -p ${WIN_DESTINATION_DIR}${dir}/${subdir}
+          if [ ! -d "${WIN_DESTINATION_DIR}${dir}/${subdir}" ]; then
+             echo "${WIN_DESTINATION_DIR}${dir}/${subdir} not created!"
+             exit 1
+          fi
+    	    ${GURPS_DIR}gurps.exe  ${WIN_SOURCE_DIR}${dir}/${subdir}/${filer}  ${WIN_DESTINATION_DIR}${dir}/${subdir}/${SITE_ID}_${SITE_DESC}_${filer:13}
+        # fi
       done
     }
     cd ..

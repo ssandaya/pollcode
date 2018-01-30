@@ -1,9 +1,21 @@
 #!/bin/bash
 
+SOURCE_DIR="N:/AVA-PollData/"
+if [ ! -d "${SOURCE_DIR}" ] ; then
+  net use N: \\\\gvrsimvap01\\Share\\N /user:sandaya BdSa998466
+
+  if [ ! -d "${SOURCE_DIR}" ] ; then
+    echo "Destination dir ${SOURCE_DIR} not found!"
+    exit 1
+  else
+    echo "Destination dir ${SOURCE_DIR} found!"
+  fi
+fi
+
 
 SITE_ID=""
 SITE_DESC=""
-WIN_SOURCE_DIR="\\\\10.20.95.59\\AVA\\VPS-PollData\\"
+WIN_SOURCE_DIR="C:/Users/simulate/VPS-PollData/"
 WIN_DESTINATION_DIR="C:/cygwin64/home/simulate/proc/polldata/vps_$(date +%Y%m%d)/"
 TMP_DESTINATION_DIR="C:/cygwin64/tmp/polldata/vps_$(date +%Y%m%d)/"
 
@@ -18,16 +30,10 @@ if [ ! -d "${WIN_DESTINATION_DIR}" ]; then
    exit 1
 fi
 
-if [ ! -d "${WIN_SOURCE_DIR}" ]; then
-  net use H: "${WIN_SOURCE_DIR}"
-  if [ $? -ne 0 ]; then
-    echo "${WIN_SOURCE_DIR} not found!"
-    exit 1
-  fi
-else
-   echo "${WIN_SOURCE_DIR} found!"
-fi
-
+if [ ! -d "$SOURCE_DIR" ] ; then
+  echo "${SOURCE_DIR} not found!"
+  exit 1
+fi  
 
 cd ${WIN_SOURCE_DIR}
 pwd
@@ -54,10 +60,10 @@ do
       SITE_DESC="UllagePressure"
 	  fi
     cd "${subdir}"
-    date_past=$(date -d "-8 days" +%Y%m%d)
+    date_past=$(date -d "-4 days" +%Y%m%d)
     date_today=$(date +%Y%m%d)
 
-    for ((i = 8;  i >= 0; i--  )) {
+    for ((i = 4;  i >= 0; i--  )) {
       pwd
       gurps_files="${SITE_ID}_${SITE_DESC}_$(date -d "-$i days" +%Y%m%d)*.txt" 
 

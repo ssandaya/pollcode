@@ -10,18 +10,18 @@ import groovy.io.FileType
 
 import java.text.SimpleDateFormat
 
-class VpsSortedFilesUP {
+class VpsSortedFilesLtdUP {
 
     static void main(String[] args) {
+        String Site_locale=args[0]
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd' 'HH:mm:ss")
         String headerLine = ""
         String dataLine = ""
         int tankNo
 
-//        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_20180108/" //+ PollDataUtility.toYyyyMmDdDate() + "/"
-//        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_20180108/" //+ PollDataUtility.toYyyyMmDdDate() + "/"
         String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsSortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/${Site_locale}/"
 
         def basefolder = new File(basepath)
         if( !basefolder.exists() ) {
