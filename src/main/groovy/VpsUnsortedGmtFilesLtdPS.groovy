@@ -34,8 +34,8 @@ class VpsUnsortedGmtFilesLtdPS {
         String dataLine = ""
         int tankNo
 
-        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_" + PollDataUtility.toYyyyMmDdDate() + "/${Site_locale}/"
+        String destpath = "Q:/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "Q:/vps_" + PollDataUtility.toYyyyMmDdDate() + "/"
 
         def count = 0
         def tempcount = 0

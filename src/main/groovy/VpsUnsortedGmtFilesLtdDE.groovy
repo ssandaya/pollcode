@@ -17,8 +17,8 @@ class VpsUnsortedGmtFilesLtdDE {
         int tankNo
         println "${Site_locale}"
 
-        String destpath = "C:/cygwin64/home/simulate/proc/polldata/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/vps_" + PollDataUtility.toYyyyMmDdDate() + "/${Site_locale}/"
+        String destpath = "Q:/VpsUnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "Q:/vps_" + PollDataUtility.toYyyyMmDdDate() + "/"
 
         def basefolder = new File(basepath)
         if( !basefolder.exists() ) {

@@ -1,9 +1,10 @@
 #!/bin/bash -vx
+SITE_ID=$1
 
 date_today=$(date +%Y%m%d)
 
 DESTINATION_DIR="\\\\10.20.95.59\\AVA\\"
-DESTINATION_SITE=/cygdrive/c/cygwin64/home/simulate/proc/polldata/VpsSortedData_${date_today}
+DESTINATION_SITE=/cygdrive/q/VpsSortedData_${date_today}
 if [ ! -d "${DESTINATION_DIR}" ] ; then
   net use W: \\\\10.20.95.59\\AVA /user:sandaya xpoint6
 
@@ -12,7 +13,7 @@ if [ ! -d "${DESTINATION_DIR}" ] ; then
     exit 1
   fi
 fi
-ls -al /cygdrive/w/AVA-SiteData
+ls -al /cygdrive/w/AVA-SiteData/${SITE_ID}
 
 cd ${DESTINATION_SITE}
 for dirc in *
