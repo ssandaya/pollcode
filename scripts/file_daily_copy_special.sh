@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -vx
 
 date_today=$(date -d "-1 days" +%Y%m%d)
 DESTINATION_DIR=Y:/
@@ -6,6 +6,7 @@ DESTINATION_SITE_150883=/cygdrive/c/cygwin64/home/simulate/proc/polldata/SortedD
 DESTINATION_SITE_822027=/cygdrive/c/cygwin64/home/simulate/proc/polldata/SortedData_${date_today}/822027
 DESTINATION_SITE_828950=/cygdrive/c/cygwin64/home/simulate/proc/polldata/SortedData_${date_today}/828950
 DESTINATION_SITE_843444=/cygdrive/c/cygwin64/home/simulate/proc/polldata/SortedData_${date_today}/843444
+DESTINATION_SITE_000001=/cygdrive/c/cygwin64/home/simulate/proc/polldata/SortedData_000001_20180201/000001
 
 if [ ! -d "${DESTINATION_DIR}" ] ; then
   net use Y: \\\\10.20.95.59\\AVA /user:sandaya xpoint6
@@ -17,18 +18,20 @@ if [ ! -d "${DESTINATION_DIR}" ] ; then
 fi
 ls -al Y:/AVA-SiteData
 
-if [ -d ${DESTINATION_SITE_150883} ]; then
-  cd ${DESTINATION_SITE_150883}
+if [ -d ${DESTINATION_SITE_000001} ]; then
+  cd ${DESTINATION_SITE_000001}
   for file in *
   do
   	# echo ${file}
-   	if [ ! -f /cygdrive/y/AVA-SiteData/150883/${file} ] && [ ! $(grep $(date -d "-1 days" +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-8 days" +%Y-%m-%d) <<< ${file}) ]
+   	if [ ! -f /cygdrive/y/AVA-SiteData/000001/${file} ] && [ ! $(grep $(date -d "-1 days" +%Y-%m-%d) <<< ${file}) ] && [ ! $(grep $(date -d "-7 days" +%Y-%m-%d) <<< ${file}) ]
   	then
-  	  cp -v ${file} /cygdrive/y/AVA-SiteData/150883/${file}
-  	  # echo ${file} /cygdrive/y/AVA-SiteData/150883/${file}
+  	  cp -v ${file} /cygdrive/y/AVA-SiteData/000001/${file}
+  	  # echo ${file} /cygdrive/y/AVA-SiteData/000001/${file}
   	fi
   done
 fi
+
+exit 0
 
 if [ -d ${DESTINATION_SITE_822027} ]; then	
   cd ${DESTINATION_SITE_822027} 

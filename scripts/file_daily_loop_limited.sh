@@ -38,7 +38,7 @@ if [ ! -d "${WIN_DESTINATION_DIR}" ]; then
    exit 1
 fi
 
-for dir in 005083109191 0050831045b2 0050831045a0 0050831045a2 005083104cd0
+for dir in 005083109191 0050831045b2 0050831045a0 0050831045a2 
 do
   pwd
   dir=${dir%*/}
@@ -51,8 +51,6 @@ do
     SITE_ID="828950"
   elif [ ${dir} == "005083109191" ]; then
     SITE_ID="843444"
-  elif [ ${dir} == "005083104cd0" ]; then
-    SITE_ID="000001"
   fi
   echo ${SITE_ID}
 

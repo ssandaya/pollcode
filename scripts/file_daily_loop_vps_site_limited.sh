@@ -14,8 +14,8 @@ for ((i = ${PAST_DAYS_FROM};  i >= ${PAST_DAYS_TO}; i--  )) {
 
 
 SITE_DESC=""
-WIN_SOURCE_DIR="\\\\10.20.95.59\\AVA\\VPS-PollData\\"
-WIN_DESTINATION_DIR="C:/cygwin64/home/simulate/proc/polldata/vps_$(date +%Y%m%d)/"
+WIN_SOURCE_DIR="Z:/VPS-PollData/"
+WIN_DESTINATION_DIR="Q:/vps_$(date +%Y%m%d)/"
 TMP_DESTINATION_DIR="C:/cygwin64/tmp/polldata/vps_$(date +%Y%m%d)/"
 
 GURPS_DIR="/cygdrive/c/Users/simulate/dev/projects/polldata2/exe/"

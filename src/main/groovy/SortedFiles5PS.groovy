@@ -19,8 +19,8 @@ class SortedFiles5PS {
         String dataLine = ""
         int tankNo
 
-        String destpath = "C:/cygwin64/home/simulate/proc/polldata/SortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
-        String basepath = "C:/cygwin64/home/simulate/proc/polldata/UnsortedData_" + PollDataUtility.toYyyyMmDdDate() + "/"
+        String destpath = "C:/cygwin64/home/simulate/proc/polldata/SortedData_000001B_20180201/" //+ PollDataUtility.toYyyyMmDdDate() + "/"
+        String basepath = "C:/cygwin64/home/simulate/proc/polldata/UnsortedData_000001B_20180201/" //+ PollDataUtility.toYyyyMmDdDate() + "/"
 
 
         def basefolder = new File(basepath)

@@ -1,1 +1,0 @@
-"Sensor Number","TimeStamp","Thermistor 1","Thermistor 2","Thermistor 3","Thermistor 4","Thermistor 5","Thermistor 6","Thermistor 7"
